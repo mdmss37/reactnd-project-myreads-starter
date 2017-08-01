@@ -60,7 +60,7 @@ class Search extends Component {
               <li key={searchedBook.id}>
                 <Book
                   book={searchedBook}
-                  shelf={searchedBook.shelf}
+                  // shelf={searchedBook.shelf}
                   onUpdateShelf={onUpdateShelf}
                 />
               </li>
