@@ -6,8 +6,7 @@ class BookShelf extends Component {
   render() {
     return(
       <div className="bookshelf">
-        {JSON.stringify(this.props.books[0])}
-        <h2 className="bookshelf-title">Currently Reading</h2>
+        <h2 className="bookshelf-title">{this.props.name}</h2>
         <div className="bookshelf-books">
           <ol className="books-grid">
             {this.props.books.map((book) => (
