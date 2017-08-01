@@ -46,7 +46,6 @@ class BooksApp extends React.Component {
             onUpdateShelf={this.updateShelf}
           />
           )}/>
-
       </div>
     )
   }

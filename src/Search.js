@@ -31,9 +31,9 @@ class Search extends Component {
     }
   }
 
-  // clearQuery = () => {
-  //   this.setState({ query: "" })
-  // }
+  clearQuery = () => {
+    this.setState({ query: "" })
+  }
 
   render() {
 
@@ -69,7 +69,6 @@ class Search extends Component {
               <li key={searchedBook.id}>
                 <Book
                   book={searchedBook}
-                  // shelf={searchedBook.shelf}
                   onUpdateShelf={onUpdateShelf}
                 />
               </li>

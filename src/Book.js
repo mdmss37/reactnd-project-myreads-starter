@@ -2,16 +2,8 @@ import React, { Component } from "react"
 
 class Book extends Component {
 
-  // state = {
-  //   shelf: this.props.shelf,
-  //   book: this.props.book
-  // }
-
-  // updateShelfBySelect = (e) => {
-  //   this.props.onUpdateShelf(this.state.book, e.target.value)
-  // }
-
   render() {
+
     const { book, onUpdateShelf } = this.props
 
     return (
