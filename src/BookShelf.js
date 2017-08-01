@@ -20,7 +20,7 @@ class BookShelf extends Component {
           </ol>
         </div>
       </div>
-      )
+    )
   }
 }
 
