@@ -1,14 +1,39 @@
 import React, { Component } from "react"
 import { Link } from "react-router-dom"
+import * as BooksAPI from './BooksAPI'
 import Book from "./Book"
 
 class Search extends Component {
+
+  state = {
+    query: "",
+    searchResult: []
+  }
+
+  updateQuery = (query) => {
+    this.setState({ query: query.trim() })
+
+    if (this.state.query === "") {
+      this.setState({ searchResult: []})
+    } else {
+      BooksAPI.search(this.state.query).then((books) => {
+      this.setState({ searchResult: books })
+    })
+  }
+}
+
+  // clearQuery = () => {
+  //   this.setState({ query: "" })
+  // }
+
   render() {
 
     const { books, onUpdateShelf } = this.props
+    const { query } = this.state
 
     return(
       <div className="search-books">
+        {/*JSON.stringify(this.state)*/}
         <div className="search-books-bar">
           <Link className="close-search" to="/">Close</Link>
           <div className="search-books-input-wrapper">
@@ -20,17 +45,22 @@ class Search extends Component {
               However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
               you don't find a specific author or title. Every search is limited by search terms.
             */}
-            <input type="text" placeholder="Search by title or author"/>
+            <input
+              value={query}
+              onChange={(e) => this.updateQuery(e.target.value)}
+              type="text"
+              placeholder="Search by title or author"
+            />
 
           </div>
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {books.map((book) => (
-              <li key={book.id}>
+            {this.state.searchResult.map((searchedBook) => (
+              <li key={searchedBook.id}>
                 <Book
-                  book={book}
-                  shelf={book.shelf}
+                  book={searchedBook}
+                  shelf={searchedBook.shelf}
                   onUpdateShelf={onUpdateShelf}
                 />
               </li>
