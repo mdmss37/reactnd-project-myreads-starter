@@ -12,12 +12,21 @@ class Search extends Component {
 
   updateQuery = (query) => {
     this.setState({ query: query.trim()})
-
-    if (this.state.query === "") {
+    // it is dangerous to use this.state.query, as setState is async
+    // below use query which is current state.
+    if (query.trim() === "") {
       this.setState({ searchResult: []})
     } else {
-      BooksAPI.search(this.state.query).then((books) => {
-      this.setState({ searchResult: books })
+      BooksAPI.search(query.trim()).then((searchResult) => {
+        // to match shelf in search and shelf in App
+        for (const book of this.props.books) {
+          searchResult.map(b => {
+            if (book.id === b.id) {
+              b.shelf = book.shelf
+            }
+          })
+        }
+        this.setState({ searchResult: searchResult })
       })
     }
   }
