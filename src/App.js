@@ -1,6 +1,7 @@
 import React from 'react'
 import * as BooksAPI from './BooksAPI'
 import BookList from "./BookList"
+import Search from "./Search"
 import './App.css'
 
 class BooksApp extends React.Component {
@@ -42,6 +43,7 @@ class BooksApp extends React.Component {
           books={this.state.books}
           onUpdateShelf={this.updateShelf}
         />
+        <Search/>
       </div>
     )
   }
