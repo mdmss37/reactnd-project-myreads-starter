@@ -17,15 +17,17 @@ class Search extends Component {
     if (query.trim() === "") {
       this.setState({ searchResult: []})
     } else {
-      BooksAPI.search(query.trim()).then((searchResult) => {
-        // to match shelf in search and shelf in App
-        for (const book of this.props.books) {
-          searchResult.map(b => {
-            if (book.id === b.id) {
-              b.shelf = book.shelf
+      BooksAPI.search(query.trim()).then(searchResult => {
+        // ISSUE: want to match main and search on shelf, but not working
+        searchResult = searchResult.map((b) => {
+          for (const book of this.props.books) {
+            if (b.id === book.id) {
+              return book
+            } else {
+              return b
             }
-          })
-        }
+          }
+        })
         this.setState({ searchResult: searchResult })
       })
     }
