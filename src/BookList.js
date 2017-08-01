@@ -3,6 +3,9 @@ import BookShelf from "./BookShelf"
 
 class BookList extends Component {
   render() {
+
+    const { books, onUpdateShelf } = this.props
+
     return(
       <div className="list-books">
 
@@ -11,25 +14,25 @@ class BookList extends Component {
         </div>
         <div className="list-books-content">
           <BookShelf
-            books={this.props.books.filter((book) => { return "currentlyReading" === book.shelf})}
+            books={books.filter((book) => { return "currentlyReading" === book.shelf})}
             name={"Currently Reading"}
-            onUpdateShelf={this.props.onUpdateShelf}
+            onUpdateShelf={onUpdateShelf}
           />
           <BookShelf
-            books={this.props.books.filter((book) => {return "wantToRead" === book.shelf})}
+            books={books.filter((book) => {return "wantToRead" === book.shelf})}
             name={"Want to Read"}
-            onUpdateShelf={this.props.onUpdateShelf}
+            onUpdateShelf={onUpdateShelf}
           />
           <BookShelf
-            books={this.props.books.filter((book) => {return "read" === book.shelf})}
+            books={books.filter((book) => {return "read" === book.shelf})}
             name={"Read"}
-            onUpdateShelf={this.props.onUpdateShelf}
+            onUpdateShelf={onUpdateShelf}
           />
         </div>
         <div className="open-search">
           <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
         </div>
-        {JSON.stringify(this.props.books.slice(0,10))}
+        {JSON.stringify(books.slice(0,10))}
       </div>
       )
   }
