@@ -13,14 +13,17 @@ class BookList extends Component {
           <BookShelf
             books={this.props.books.filter((book) => { return "currentlyReading" === book.shelf})}
             name={"Currently Reading"}
+            onUpdateShelf={this.props.onUpdateShelf}
           />
           <BookShelf
             books={this.props.books.filter((book) => {return "wantToRead" === book.shelf})}
             name={"Want to Read"}
+            onUpdateShelf={this.props.onUpdateShelf}
           />
           <BookShelf
             books={this.props.books.filter((book) => {return "read" === book.shelf})}
             name={"Read"}
+            onUpdateShelf={this.props.onUpdateShelf}
           />
         </div>
         <div className="open-search">

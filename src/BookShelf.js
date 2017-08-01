@@ -14,6 +14,7 @@ class BookShelf extends Component {
                 <Book
                   book={book}
                   shelf={book.shelf}
+                  onUpdateShelf={this.props.onUpdateShelf}
                 />
               </li>
               ))}

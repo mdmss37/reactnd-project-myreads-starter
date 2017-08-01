@@ -21,11 +21,26 @@ class BooksApp extends React.Component {
     })
   }
 
+  updateShelf = (book, shelf) => {
+    BooksAPI.update(book, shelf)
+    .then(data => {
+      book.shelf = shelf
+      for (let b of this.state.books) {
+        if (b.id === book.id) {
+          b.shelf = shelf
+        }
+      }
+
+      this.setState({books: this.state.books })
+    })
+  }
+
   render() {
     return (
       <div className="app">
         <BookList
           books={this.state.books}
+          onUpdateShelf={this.updateShelf}
         />
       </div>
     )
