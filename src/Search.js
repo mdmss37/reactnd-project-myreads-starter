@@ -19,16 +19,26 @@ class Search extends Component {
     } else {
       BooksAPI.search(query.trim()).then(searchResult => {
         // ISSUE: want to match main and search on shelf, but not working
-        searchResult = searchResult.map((b) => {
+        // Reset shelf to none
+        let updateSearch = searchResult.map(b => {
+          b.shelf = "none"
+          return b
+        })
+        console.log("SearchResult:", searchResult[0].id)
+        // if book is in list, set shelf of search result same as list
+        let finalResult = updateSearch.map(b => {
+          let obj = b
           for (const book of this.props.books) {
-            if (b.id === book.id) {
-              return book
-            } else {
-              return b
+            console.log(this.props.books)
+            if (obj.id === book.id) {
+              obj.shelf = book.shelf
             }
+            // console.log(obj.title, obj.shelf)
+            return obj
           }
         })
-        this.setState({ searchResult: searchResult })
+        // still not working(all search result with shelf:none)
+        this.setState({ searchResult: finalResult })
       })
     }
   }
