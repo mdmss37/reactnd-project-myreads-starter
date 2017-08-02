@@ -10,6 +10,9 @@ class Search extends Component {
     searchResult: []
   }
 
+  // TODO: can I keep last search term, as I need to type again
+  // When left search page
+
   updateQuery = (query) => {
     this.setState({ query: query.trim()})
     // it is dangerous to use this.state.query, as setState is async
@@ -18,26 +21,23 @@ class Search extends Component {
       this.setState({ searchResult: []})
     } else {
       BooksAPI.search(query.trim()).then(searchResult => {
-        // ISSUE: want to match main and search on shelf, but not working
+        // ISSUE: Is there other good way to solve this?
         // Reset shelf to none
         let updateSearch = searchResult.map(b => {
           b.shelf = "none"
           return b
         })
-        console.log("SearchResult:", searchResult[0].id)
         // if book is in list, set shelf of search result same as list
         let finalResult = updateSearch.map(b => {
-          let obj = b
           for (const book of this.props.books) {
-            console.log(this.props.books)
-            if (obj.id === book.id) {
-              obj.shelf = book.shelf
+            if (b.id === book.id) {
+              b.shelf = book.shelf
             }
-            // console.log(obj.title, obj.shelf)
-            return obj
           }
+          // make sure return outside of for loop!!!
+          return b
         })
-        // still not working(all search result with shelf:none)
+        // Currently working
         this.setState({ searchResult: finalResult })
       })
     }
