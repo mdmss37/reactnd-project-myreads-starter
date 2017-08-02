@@ -1,4 +1,4 @@
-import React, { Component } from "react"
+import React/*, { Component }*/ from "react"
 import Book from "./Book"
 
 const BookShelf = ({ books, name, onUpdateShelf }) => {
