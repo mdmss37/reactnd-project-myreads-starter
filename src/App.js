@@ -33,7 +33,7 @@ class BooksApp extends React.Component {
   render() {
     return (
       <div className="app">
-        <Route exact path="/" render={() => (
+        <Route exact path="/my-read-app" render={() => (
           <BookList
             books={this.state.books}
             onUpdateShelf={this.updateShelf}
