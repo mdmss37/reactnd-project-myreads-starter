@@ -8,6 +8,9 @@ const BookShelf = ({ books, name, onUpdateShelf }) => {
         <div className="bookshelf-books">
           <ol className="books-grid">
             {books.map((book) => (
+              // we are not sure id is unique, need verify
+              // temporary use id + title
+              let key = book.id + "-" + book.title
               <li key={book.id}>
                 <Book
                   book={book}
