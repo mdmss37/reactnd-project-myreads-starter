@@ -23,12 +23,12 @@ class Search extends Component {
       BooksAPI.search(query.trim()).then(searchResult => {
         // ISSUE: Is there other good way to solve this?
         // Reset shelf to none
-        let updateSearch = searchResult.map(b => {
+        searchResult = searchResult.map(b => {
           b.shelf = "none"
           return b
         })
         // if book is in list, set shelf of search result same as list
-        let finalResult = updateSearch.map(b => {
+        searchResult = searchResult.map(b => {
           for (const book of this.props.books) {
             if (b.id === book.id) {
               b.shelf = book.shelf
@@ -37,8 +37,10 @@ class Search extends Component {
           // make sure return outside of for loop!!!
           return b
         })
-        // Currently working
-        this.setState({ searchResult: finalResult })
+        // set new state only when it is different from current state
+        if (this.state.searchResult != searchResult) {
+          this.setState({ searchResult: searchResult })
+        }
       })
     }
   }
@@ -78,7 +80,7 @@ class Search extends Component {
         <div className="search-books-results">
           <ol className="books-grid">
             {this.state.searchResult.map((searchedBook) => (
-              <li key={searchedBook.id}>
+              <li key={searchedBook.id + "-" + searchedBook.title}>
                 <Book
                   book={searchedBook}
                   onUpdateShelf={onUpdateShelf}
