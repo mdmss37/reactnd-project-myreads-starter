@@ -10,8 +10,7 @@ const BookShelf = ({ books, name, onUpdateShelf }) => {
             {books.map((book) => (
               // we are not sure id is unique, need verify
               // temporary use id + title
-              let key = book.id + "-" + book.title
-              <li key={book.id}>
+              <li key={book.id + "-" + book.title}>
                 <Book
                   book={book}
                   onUpdateShelf={onUpdateShelf}
