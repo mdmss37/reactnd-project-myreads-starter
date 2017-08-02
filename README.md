@@ -9,6 +9,7 @@ This myread Project is a project from [Udacity React nanodegree course](https://
 1. Please clone this repository
 2. In command line, *npm install* to install all dependency
 3. In command line, *npm start* to run the App
+4. This [Link](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#github-pages) is useful to know how to deploy react app
 
 ---
 
