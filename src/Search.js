@@ -21,7 +21,14 @@ class Search extends Component {
       this.setState({ searchResult: []})
     } else {
       BooksAPI.search(query.trim()).then(searchResult => {
-        // ISSUE: Is there other good way to solve this?
+        // some data from BooksAPI.search has duplicate, want to remove duplicate.
+        // search "React" has duplicate
+        console.log(searchResult)
+        searchResult = searchResult.filter((book, pos, arr) => {
+          return arr.map(mapBook => mapBook["id"]).indexOf(book["id"]) === pos
+        })
+        console.log(searchResult)
+
         // Reset shelf to none
         searchResult = searchResult.map(b => {
           b.shelf = "none"
@@ -79,7 +86,7 @@ class Search extends Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {this.state.searchResult.map((searchedBook) => (
+            {this.state.searchResult.map((searchedBook, index) => (
               <li key={searchedBook.id + "-" + searchedBook.title}>
                 <Book
                   book={searchedBook}
