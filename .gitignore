@@ -2,3 +2,7 @@ node_modules
 yarn.lock
 .DS_Store
 build
+.firebaserc
+database.rules.json
+firebase.json
+functions/
