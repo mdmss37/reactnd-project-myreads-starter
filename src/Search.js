@@ -38,7 +38,7 @@ class Search extends Component {
           return b
         })
         // set new state only when it is different from current state
-        if (this.state.searchResult != searchResult) {
+        if (this.state.searchResult !== searchResult) {
           this.setState({ searchResult: searchResult })
         }
       })
@@ -51,7 +51,7 @@ class Search extends Component {
 
   render() {
 
-    const { books, onUpdateShelf } = this.props
+    const { onUpdateShelf } = this.props
     const { query } = this.state
 
     return(
