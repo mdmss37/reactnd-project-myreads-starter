@@ -17,5 +17,5 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
-  "homepage": "https://mdmss37.github.io/my-read-app"
+  "homepage": "https://mdmss37.github.io/reactnd-project-myreads-starter"
 }
