@@ -1,6 +1,6 @@
 ## What is this? ##
 
-This myread Project is a project from [Udacity React nanodegree course](https://www.udacity.com).
+This myread Project is a project from [Udacity React nanodegree course](https://www.udacity.com). Using React as a Framework and runnning on [here](https://my-read-dadde.firebaseapp.com/search) with firebase.
 
 ---
 
